@@ -1,0 +1,23 @@
+{
+  "name": "gatsby-service-centre",
+  "version": "1.0.0",
+  "private": true,
+  "description": "gatsby-service-centre",
+  "author": "Andy Coupe",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "gatsby": "^3.0.1",
+    "gatsby-plugin-gatsby-cloud": "^2.1.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}
