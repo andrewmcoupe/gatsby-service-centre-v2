@@ -12,7 +12,8 @@
     "target": "es2017",
     "outDir": "lib",
     "jsx": "react",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
   },
   "exclude": ["node_modules", "./node_modules/*", ".cache"]
 }
