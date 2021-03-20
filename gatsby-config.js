@@ -1,6 +1,16 @@
 module.exports = {
   siteMetadata: {
-    title: "gatsby-service-centre",
+    title: 'gatsby-service-centre',
   },
-  plugins: ["gatsby-plugin-gatsby-cloud"],
-};
+  plugins: [
+    'gatsby-plugin-gatsby-cloud',
+    {
+      resolve: `gatsby-plugin-typescript`,
+      options: {
+        isTSX: true, // defaults to false
+        jsxPragma: `jsx`, // defaults to "React"
+        allExtensions: true, // defaults to false
+      },
+    },
+  ],
+}
