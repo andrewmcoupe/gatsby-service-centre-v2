@@ -1,9 +1,10 @@
-import * as React from 'react'
+import React from 'react'
+import { Heading } from '@chakra-ui/react'
 
 const IndexPage = () => {
   return (
     <main>
-      <h1>Service Centre v2</h1>
+      <Heading>Service Centre v2</Heading>
     </main>
   )
 }

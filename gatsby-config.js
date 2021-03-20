@@ -4,6 +4,7 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-gatsby-cloud',
+    '@chakra-ui/gatsby-plugin',
     {
       resolve: `gatsby-plugin-typescript`,
       options: {
