@@ -10,7 +10,6 @@
     "sourceMap": true,
     "skipLibCheck": true,
     "target": "es2017",
-    "outDir": "lib",
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
