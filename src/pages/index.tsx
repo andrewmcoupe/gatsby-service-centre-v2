@@ -1,12 +1,12 @@
 import React from 'react'
 import { Heading } from '@chakra-ui/react'
-import LayoutComponent from '../components/layout/layout.component'
+import Layout from '@components/layout/layout.component'
 
 const IndexPage = () => {
   return (
-    <LayoutComponent>
+    <Layout>
       <Heading>Service Centre v2</Heading>
-    </LayoutComponent>
+    </Layout>
   )
 }
 

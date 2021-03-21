@@ -13,7 +13,12 @@
     "outDir": "lib",
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "baseUrl": "./src",
+    "rootDir": "./",
+    "paths": {
+      "@components/*": ["components/*"]
+    }
   },
   "exclude": ["node_modules", "./node_modules/*", ".cache"]
 }
