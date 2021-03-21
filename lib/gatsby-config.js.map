@@ -1,1 +1,0 @@
-{"version":3,"file":"gatsby-config.js","sourceRoot":"","sources":["../gatsby-config.ts"],"names":[],"mappings":";AAAA,MAAM,CAAC,OAAO,GAAG;IACf,YAAY,EAAE;QACZ,KAAK,EAAE,uBAAuB;KAC/B;IACD,OAAO,EAAE;QACP,4BAA4B;QAC5B;YACE,OAAO,EAAE,0BAA0B;YACnC,OAAO,EAAE;gBACP,KAAK,EAAE,IAAI;gBACX,SAAS,EAAE,KAAK;gBAChB,aAAa,EAAE,IAAI;aACpB;SACF;KACF;CACF,CAAA"}
