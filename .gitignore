@@ -50,4 +50,8 @@ node_modules/
 .cache/
 public
 
+.env.development
+seed.js
+customers.json
+
 

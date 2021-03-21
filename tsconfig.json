@@ -2,7 +2,7 @@
   "compilerOptions": {
     "strict": true,
     "noImplicitAny": true,
-    "lib": ["es2017"],
+    "lib": ["es2017", "dom"],
     "removeComments": true,
     "moduleResolution": "node",
     "noUnusedLocals": true,
@@ -15,9 +15,9 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "baseUrl": "./src",
-    "rootDir": "./",
     "paths": {
-      "@components/*": ["components/*"]
+      "@components/*": ["./components/*"],
+      "@hooks/*": ["./hooks/*"]
     }
   },
   "exclude": ["node_modules", "./node_modules/*", ".cache"]

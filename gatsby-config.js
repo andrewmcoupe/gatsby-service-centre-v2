@@ -5,6 +5,7 @@ module.exports = {
   plugins: [
     'gatsby-plugin-gatsby-cloud',
     '@chakra-ui/gatsby-plugin',
+    'gatsby-plugin-tsconfig-paths',
     {
       resolve: `gatsby-plugin-typescript`,
       options: {
