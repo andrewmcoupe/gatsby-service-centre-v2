@@ -10,6 +10,9 @@ const IndexPage = () => {
       <Button as={Link} to={'/add-customer'}>
         Add customer
       </Button>
+      <Button as={Link} to={'/customers'}>
+        Our customers
+      </Button>
     </Layout>
   )
 }

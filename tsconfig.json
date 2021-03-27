@@ -16,7 +16,8 @@
     "baseUrl": "./src",
     "paths": {
       "@components/*": ["./components/*"],
-      "@hooks/*": ["./hooks/*"]
+      "@hooks/*": ["./hooks/*"],
+      "@http/*": ["./http/*"]
     }
   },
   "exclude": ["node_modules", "./node_modules/*", ".cache"]

@@ -22,6 +22,7 @@ const AddCustomerPage = () => {
         <Heading size={'md'} gridColumn={'1 / -1'}>
           Primary details
         </Heading>
+
         <Box>
           <FormControl isRequired>
             <FormLabel>Customer name</FormLabel>

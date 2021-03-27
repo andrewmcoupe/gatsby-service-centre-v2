@@ -73,10 +73,8 @@ export const useAddCustomer = () => {
   const { status, mutate } = useMutation((formData: NewCustomerRequest) =>
     axios.post(`${process.env.CUSTOMERS_SERVICE_API_ENDPOINT}/customers`, formData),
   )
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     dispatch({ type: ActionTypes.change, payload: event })
-
   const onSubmit = async () => {
     const formData: NewCustomerRequest = {
       name: state.name,
@@ -96,11 +94,7 @@ export const useAddCustomer = () => {
       },
     }
 
-    try {
-      mutate(formData)
-    } catch (error) {
-      console.error(error)
-    }
+    mutate(formData)
   }
 
   return {

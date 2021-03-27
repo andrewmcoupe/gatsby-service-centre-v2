@@ -76,7 +76,6 @@ describe('useAddCustomer', () => {
 
   it('should make a request with the correct request body when calling onSubmit', async () => {
     const { result } = renderHook(useAddCustomer, { wrapper })
-    process.env.CUSTOMERS_SERVICE_API_ENDPOINT = 'test-endpoint'
 
     for (const stubEvent of stubEvents) {
       act(() => {
@@ -107,7 +106,7 @@ describe('useAddCustomer', () => {
     })
 
     await waitFor(() => {
-      expect(axios.post).toHaveBeenCalledWith('test-endpoint/customers', expectedPostData)
+      expect(axios.post).toHaveBeenCalledWith('CUSTOMERS_SERVICE_API_ENDPOINT/customers', expectedPostData)
     })
   })
 })
