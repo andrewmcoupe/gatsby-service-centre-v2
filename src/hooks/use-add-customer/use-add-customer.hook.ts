@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { useMutation } from 'react-query'
 
 export type NewCustomerState = {
   [key: string]: string
@@ -69,14 +70,14 @@ const newCustomerReducer = (state: NewCustomerState, action: Action) => {
 
 export const useAddCustomer = () => {
   const [state, dispatch] = React.useReducer(newCustomerReducer, initialState)
-  const [status, setStatus] = React.useState<'idle' | 'pending' | 'success'>('idle')
+  const { status, mutate } = useMutation((formData: NewCustomerRequest) =>
+    axios.post(`${process.env.CUSTOMERS_SERVICE_API_ENDPOINT}/customers`, formData),
+  )
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     dispatch({ type: ActionTypes.change, payload: event })
 
   const onSubmit = async () => {
-    setStatus('pending')
-
     const formData: NewCustomerRequest = {
       name: state.name,
       address: state.address,
@@ -96,8 +97,7 @@ export const useAddCustomer = () => {
     }
 
     try {
-      await axios.post(`${process.env.CUSTOMERS_SERVICE_API_ENDPOINT}/customers`, formData)
-      setStatus('success')
+      mutate(formData)
     } catch (error) {
       console.error(error)
     }

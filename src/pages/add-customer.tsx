@@ -121,7 +121,7 @@ const AddCustomerPage = () => {
         </Box>
       </SimpleGrid>
       <HStack spacing="24px" marginY={8}>
-        <Button isLoading={status === 'pending'} onClick={onSubmit} loadingText="Saving customer" colorScheme="green">
+        <Button isLoading={status === 'loading'} onClick={onSubmit} loadingText="Saving customer" colorScheme="green">
           Save customer
         </Button>{' '}
       </HStack>

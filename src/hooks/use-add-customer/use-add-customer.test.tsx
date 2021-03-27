@@ -2,6 +2,8 @@ import React from 'react'
 import { renderHook, act } from '@testing-library/react-hooks'
 import axios from 'axios'
 import { NewCustomerRequest, NewCustomerState, useAddCustomer } from './use-add-customer.hook'
+import { QueryClientProvider, QueryClient } from 'react-query'
+import { waitFor } from '@testing-library/dom'
 
 jest.mock('axios')
 
@@ -50,15 +52,18 @@ const stubEvents = [
   },
 ] as React.ChangeEvent<HTMLInputElement>[]
 
+const queryClient = new QueryClient()
+const wrapper: React.FC = ({ children }) => <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+
 describe('useAddCustomer', () => {
   it('should return the default state initially', () => {
-    const { result } = renderHook(useAddCustomer)
+    const { result } = renderHook(useAddCustomer, { wrapper })
 
     expect(result.current.state).toEqual(initialState)
   })
 
   it('should update the correct state key when handleChange is invoked', () => {
-    const { result } = renderHook(useAddCustomer)
+    const { result } = renderHook(useAddCustomer, { wrapper })
 
     for (const stubEvent of stubEvents) {
       act(() => {
@@ -69,8 +74,8 @@ describe('useAddCustomer', () => {
     }
   })
 
-  it('should make a request with the correct request body when calling onSubmit', () => {
-    const { result } = renderHook(useAddCustomer)
+  it('should make a request with the correct request body when calling onSubmit', async () => {
+    const { result } = renderHook(useAddCustomer, { wrapper })
     process.env.CUSTOMERS_SERVICE_API_ENDPOINT = 'test-endpoint'
 
     for (const stubEvent of stubEvents) {
@@ -99,7 +104,9 @@ describe('useAddCustomer', () => {
 
     act(() => {
       result.current.onSubmit()
+    })
 
+    await waitFor(() => {
       expect(axios.post).toHaveBeenCalledWith('test-endpoint/customers', expectedPostData)
     })
   })
