@@ -2,6 +2,6 @@ module.exports = {
   automock: false,
   preset: 'ts-jest',
   globals: {},
-  testEnvironment: 'jsdom', // or node
+  testEnvironment: 'jsdom',
   setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
 }

@@ -13,6 +13,7 @@
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "rootDir": "./",
     "baseUrl": "./src",
     "paths": {
       "@components/*": ["./components/*"],

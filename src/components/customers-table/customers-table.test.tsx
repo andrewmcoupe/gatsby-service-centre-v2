@@ -1,8 +1,12 @@
 import React from 'react'
 import faker from 'faker'
 import { CustomersTable } from './customers-table.component'
-import { render } from '@testing-library/react'
+import { render, waitFor } from '@testing-library/react'
 import { GetCustomersResponse } from '@http/fetch-customers'
+
+jest.mock('gatsby', () => ({
+  Link: jest.fn(({ children, to }) => <a href={to}>{children}</a>),
+}))
 
 const stubCustomersResponse: GetCustomersResponse = {
   Items: [
@@ -50,14 +54,14 @@ describe('CustomersTable', () => {
     expect(queryByTestId('customers-table')).not.toBeInTheDocument()
   })
 
-  it('should render a table of customers if provided along with edit and delete buttons', () => {
+  it('should render a table of customers if provided along with edit and delete buttons', async () => {
     const { getByText, getByLabelText } = render(<CustomersTable data={{ data: stubCustomersResponse }} />)
     const { Items } = stubCustomersResponse
 
-    Items.forEach((item) => {
-      expect(getByText(item.name)).toBeInTheDocument()
-      expect(getByText(item.email)).toBeInTheDocument()
-      expect(getByText(item.phone1.number)).toBeInTheDocument()
+    await waitFor(() => {
+      expect(getByText(Items[0].name)).toBeInTheDocument()
+      expect(getByText(Items[0].email)).toBeInTheDocument()
+      expect(getByText(Items[0].phone1.number)).toBeInTheDocument()
       expect(getByLabelText('Delete customer')).toBeInTheDocument()
       expect(getByLabelText('Edit customer')).toBeInTheDocument()
     })

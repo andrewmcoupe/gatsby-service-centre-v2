@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'gatsby'
 import { IconButton, Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons'
 import { GetCustomersResponse } from '@http/fetch-customers'
@@ -26,14 +27,16 @@ export const CustomersTable: React.FC<CustomersTableProps> = ({ data }) => {
       </Thead>
       <Tbody>
         {data?.data.Items.map((customer) => (
-          <Tr>
+          <Tr key={customer._id}>
             <Td>
               <IconButton colorScheme="teal" aria-label="Edit customer" size="lg" icon={<EditIcon />} />
             </Td>
             <Td>
               <IconButton colorScheme="red" aria-label="Delete customer" size="lg" icon={<DeleteIcon />} />
             </Td>
-            <Td>{customer.name}</Td>
+            <Td>
+              <Link to={`/customer/${customer._id}`}>{customer.name}</Link>
+            </Td>
             <Td>{customer.email}</Td>
             <Td>{customer.phone1.number}</Td>
             {/*TODO: Calculate this*/}
