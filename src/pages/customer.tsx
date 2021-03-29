@@ -4,6 +4,7 @@ import Layout from '@components/layout/layout.component'
 import { useQuery } from 'react-query'
 import { fetchCustomer } from '@http/fetch-customer'
 import { ContactList } from '@components/contact-list/contact-list.component'
+import { HistoryTable } from '@components/history-table/history-table.component'
 
 const CustomerPage: React.FC<{ id: string }> = ({ id }) => {
   const { data: customer, status } = useQuery(['single-customer', id], () => fetchCustomer(id))
@@ -28,6 +29,7 @@ const CustomerPage: React.FC<{ id: string }> = ({ id }) => {
             {customer.address}
           </Text>
           <ContactList contacts={[customer.phone1!, customer.phone2!, customer.phone3!]} />
+          <HistoryTable historyItems={customer.history} />
         </>
       )}
     </Layout>

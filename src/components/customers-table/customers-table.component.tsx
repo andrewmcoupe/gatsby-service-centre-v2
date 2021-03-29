@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import { IconButton, Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
+import { IconButton, Table, Tbody, Td, Th, Thead, Tr, HStack } from '@chakra-ui/react'
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons'
 import { GetCustomersResponse } from '@http/fetch-customers'
 
@@ -14,11 +14,10 @@ type CustomersTableProps = {
 
 export const CustomersTable: React.FC<CustomersTableProps> = ({ data }) => {
   return data ? (
-    <Table variant="unstyled" data-testid={'customers-table'}>
+    <Table variant="striped" data-testid={'customers-table'} size={'sm'}>
       <Thead>
         <Tr>
-          <Th></Th>
-          <Th></Th>
+          <Th>Actions</Th>
           <Th>Name</Th>
           <Th>Email</Th>
           <Th>Primary phone</Th>
@@ -29,11 +28,13 @@ export const CustomersTable: React.FC<CustomersTableProps> = ({ data }) => {
         {data?.data.Items.map((customer) => (
           <Tr key={customer._id}>
             <Td>
-              <IconButton colorScheme="teal" aria-label="Edit customer" size="lg" icon={<EditIcon />} />
+              <HStack>
+                <IconButton colorScheme="teal" aria-label="Edit customer" size="lg" icon={<EditIcon />} />
+
+                <IconButton colorScheme="red" aria-label="Delete customer" size="lg" icon={<DeleteIcon />} />
+              </HStack>
             </Td>
-            <Td>
-              <IconButton colorScheme="red" aria-label="Delete customer" size="lg" icon={<DeleteIcon />} />
-            </Td>
+
             <Td>
               <Link to={`/customer/${customer._id}`}>{customer.name}</Link>
             </Td>
