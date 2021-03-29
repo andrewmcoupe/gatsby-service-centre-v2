@@ -11,9 +11,12 @@ const MediaLink: React.FunctionComponent<{ mediaUrl: string }> = ({ mediaUrl }) 
   )
 }
 
-type MediaProperty = Pick<HistoryItem, 'ramMedia' | 'quoteMedia' | 'jobSheetMedia' | 'powraMedia' | 'invoiceMedia'>
+type MediaProperty = keyof Pick<
+  HistoryItem,
+  'ramMedia' | 'quoteMedia' | 'jobSheetMedia' | 'powraMedia' | 'invoiceMedia'
+>
 
-const renderMedia = (item: HistoryItem, mediaName: keyof MediaProperty) => {
+const renderMedia = (item: HistoryItem, mediaName: MediaProperty) => {
   if (item.notRequiredInputs.includes(mediaName)) {
     return <Badge colorScheme="gray">N/A</Badge>
   }
@@ -25,11 +28,20 @@ const renderMedia = (item: HistoryItem, mediaName: keyof MediaProperty) => {
   return <MediaLink mediaUrl={item[mediaName]} />
 }
 
-const tableHeadStyles = {
-  background: 'white',
-  top: '0',
-  zIndex: '1',
-}
+export const tableHeads = [
+  'Actions',
+  'Compressor',
+  'Description',
+  'Supplier',
+  'PON',
+  'Quote',
+  'POWRA',
+  'RAMS',
+  'Jobsheet',
+  'Invoice',
+  'Invoice no.',
+  'Next due',
+] as const
 
 export const HistoryTable: React.FC<{ historyItems: HistoryItem[] }> = ({ historyItems }) => {
   return historyItems.length > 0 ? (
@@ -40,42 +52,11 @@ export const HistoryTable: React.FC<{ historyItems: HistoryItem[] }> = ({ histor
       <Table variant="striped" size={'sm'} data-testid={'history-table'}>
         <Thead>
           <Tr>
-            <Th {...tableHeadStyles} position={'sticky'}>
-              Actions
-            </Th>
-            <Th {...tableHeadStyles} position={'sticky'}>
-              Compressor
-            </Th>
-            <Th {...tableHeadStyles} position={'sticky'}>
-              Description
-            </Th>
-            <Th {...tableHeadStyles} position={'sticky'}>
-              Supplier
-            </Th>
-            <Th {...tableHeadStyles} position={'sticky'}>
-              PON
-            </Th>
-            <Th {...tableHeadStyles} position={'sticky'}>
-              Quote
-            </Th>
-            <Th {...tableHeadStyles} position={'sticky'}>
-              POWRA
-            </Th>
-            <Th {...tableHeadStyles} position={'sticky'}>
-              RAMS
-            </Th>
-            <Th {...tableHeadStyles} position={'sticky'}>
-              Jobsheet
-            </Th>
-            <Th {...tableHeadStyles} position={'sticky'}>
-              Invoice
-            </Th>
-            <Th {...tableHeadStyles} position={'sticky'}>
-              Invoice No.
-            </Th>
-            <Th {...tableHeadStyles} position={'sticky'}>
-              Next due
-            </Th>
+            {tableHeads.map((headerTitle) => (
+              <Th position={'sticky'} background={'white'} top={0} zIndex={1}>
+                {headerTitle}
+              </Th>
+            ))}
           </Tr>
         </Thead>
         <Tbody>
