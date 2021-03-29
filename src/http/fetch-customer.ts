@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-type PhoneContact = {
+export type PhoneContact = {
   name: string
   number: string
 }
