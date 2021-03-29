@@ -11,7 +11,7 @@ const renderContact = (contact: PhoneContact) => {
 
   return (
     <Text fontSize="lg">
-      <span>{contact.name}</span>-<span>{contact.number}</span>
+      <span>{contact.name}</span> - <span>{contact.number}</span>
     </Text>
   )
 }

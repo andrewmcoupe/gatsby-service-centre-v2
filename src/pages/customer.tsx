@@ -6,7 +6,7 @@ import { fetchCustomer } from '@http/fetch-customer'
 import { ContactList } from '@components/contact-list/contact-list.component'
 
 const CustomerPage: React.FC<{ id: string }> = ({ id }) => {
-  const { data: customer, status } = useQuery('single-customer', () => fetchCustomer(id))
+  const { data: customer, status } = useQuery(['single-customer', id], () => fetchCustomer(id))
 
   return (
     <Layout>
