@@ -21,11 +21,11 @@ export type HistoryItem = {
   compressor: string
   jobDescription: string
   supplier: string
-  quoteSheetUrl: string
-  powraSheetUrl: string
-  ramsSheetUrl: string
-  jobSheetUrl: string
-  invoiceUrl: string
+  quoteMedia: string
+  powraMedia: string
+  ramMedia: string
+  jobSheetMedia: string
+  invoiceMedia: string
   invoiceNumber: string
   nextDueDate: Date | null
   purchaseOrderNumber: string
