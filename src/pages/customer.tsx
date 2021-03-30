@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading, Spinner, Text } from '@chakra-ui/react'
+import { Heading, Spinner, Text, HStack } from '@chakra-ui/react'
 import Layout from '@components/layout/layout.component'
 import { useQuery } from 'react-query'
 import { fetchCustomer } from '@http/fetch-customer'
@@ -24,11 +24,16 @@ const CustomerPage: React.FC<{ id: string }> = ({ id }) => {
       {status === 'error' && <p>There was an error retrieving this customer</p>}
       {status === 'success' && !!customer && (
         <>
-          <Heading>{customer.name}</Heading>
-          <Text fontSize="lg" marginBottom={8}>
-            {customer.address}
-          </Text>
-          <ContactList contacts={[customer.phone1!, customer.phone2!, customer.phone3!]} />
+          <HStack justifyContent={'space-between'}>
+            <div>
+              <Heading>{customer.name}</Heading>
+              <Text fontSize="lg">{customer.address}</Text>
+              <Text fontSize="lg" marginBottom={8}>
+                {customer.email}
+              </Text>
+            </div>
+            <ContactList contacts={[customer.email, customer.phone1!, customer.phone2!, customer.phone3!]} />
+          </HStack>
           <HistoryTable historyItems={customer.history} />
         </>
       )}

@@ -2,20 +2,41 @@ import React from 'react'
 import { PhoneContact } from '@http/fetch-customer'
 import { Stack, Text } from '@chakra-ui/react'
 
+export type Contacts = [string, PhoneContact, PhoneContact, PhoneContact]
+
 type ContactListProps = {
-  contacts: PhoneContact[]
+  contacts: Contacts
 }
 
-const renderContact = (contact: PhoneContact) => {
+const renderContact = (contact: PhoneContact | string) => {
+  if (!isPhone(contact)) {
+    return (
+      <Text fontSize="sm">
+        <span>{contact}</span>
+      </Text>
+    )
+  }
+
   if (!contact.name || !contact.number) return null
 
   return (
-    <Text fontSize="lg">
+    <Text fontSize="sm">
       <span>{contact.name}</span> - <span>{contact.number}</span>
     </Text>
   )
 }
 
+const isPhone = (contact: PhoneContact | string): contact is PhoneContact => {
+  return typeof contact !== 'string'
+}
+
 export const ContactList: React.FC<ContactListProps> = ({ contacts }) => {
-  return <Stack spacing={3}>{contacts.map((contact) => renderContact(contact))}</Stack>
+  return (
+    <Stack spacing={3} borderColor={'lightgrey'} borderWidth={2} borderRadius={6} padding={4}>
+      <Text fontSize={'lg'} fontWeight={'semibold'}>
+        Contact info
+      </Text>
+      {contacts.map((contact) => renderContact(contact))}
+    </Stack>
+  )
 }
