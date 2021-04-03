@@ -4,7 +4,7 @@ Service Centre is the client portion of a customer management application.
 
 ## ⚙️ Installation
 
-Use the package manager [npm](https://www.npmjs.com/) to install packages for Mood Swings.
+Use the package manager [npm](https://www.npmjs.com/) to install packages.
 
 ```shell
 npm install
