@@ -18,7 +18,8 @@
     "paths": {
       "@components/*": ["./components/*"],
       "@hooks/*": ["./hooks/*"],
-      "@http/*": ["./http/*"]
+      "@http/*": ["./http/*"],
+      "@test-helpers/*": ["./test-helpers/*"]
     }
   },
   "exclude": ["node_modules", "./node_modules/*", ".cache"]

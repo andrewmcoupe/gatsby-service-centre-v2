@@ -1,8 +1,9 @@
 import React from 'react'
+import { render, waitFor } from '@testing-library/react'
 import faker from 'faker'
 import { CustomersTable } from './customers-table.component'
-import { render, waitFor } from '@testing-library/react'
 import { GetCustomersResponse } from '@http/fetch-customers'
+import { WithQueryClient } from '@test-helpers/render-with-query-client'
 
 jest.mock('gatsby', () => ({
   Link: jest.fn(({ children, to }) => <a href={to}>{children}</a>),
@@ -49,13 +50,21 @@ const stubCustomersResponse: GetCustomersResponse = {
 
 describe('CustomersTable', () => {
   it('should not render if data is undefined', () => {
-    const { queryByTestId } = render(<CustomersTable data={undefined} />)
+    const { queryByTestId } = render(
+      <WithQueryClient>
+        <CustomersTable data={undefined} />
+      </WithQueryClient>,
+    )
 
     expect(queryByTestId('customers-table')).not.toBeInTheDocument()
   })
 
   it('should render a table of customers if provided along with edit and delete buttons', async () => {
-    const { getByText, getByLabelText } = render(<CustomersTable data={{ data: stubCustomersResponse }} />)
+    const { getByText, getByLabelText } = render(
+      <WithQueryClient>
+        <CustomersTable data={{ data: stubCustomersResponse }} />
+      </WithQueryClient>,
+    )
     const { Items } = stubCustomersResponse
 
     await waitFor(() => {

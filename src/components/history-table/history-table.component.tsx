@@ -46,7 +46,7 @@ export const tableHeads = [
 export const HistoryTable: React.FC<{ historyItems: HistoryItem[] }> = ({ historyItems }) => {
   return historyItems.length > 0 ? (
     <>
-      <Heading size={'lg'} marginTop={10} marginBottom={4}>
+      <Heading size={'md'} marginTop={10} marginBottom={4}>
         History of work
       </Heading>
       <Table variant="striped" size={'sm'} data-testid={'history-table'}>
