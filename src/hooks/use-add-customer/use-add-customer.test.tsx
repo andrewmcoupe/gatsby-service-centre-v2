@@ -1,8 +1,6 @@
-import React from 'react'
 import { renderHook, act } from '@testing-library/react-hooks'
 import axios from 'axios'
 import { NewCustomerRequest, NewCustomerState, useAddCustomer } from './use-add-customer.hook'
-import { waitFor } from '@testing-library/dom'
 import { WithQueryClient } from '@test-helpers/render-with-query-client'
 
 jest.mock('axios')
@@ -72,7 +70,7 @@ describe('useAddCustomer', () => {
   })
 
   it('should make a request with the correct request body when calling onSubmit', async () => {
-    const { result } = renderHook(useAddCustomer, { wrapper: WithQueryClient })
+    const { result, waitFor } = renderHook(useAddCustomer, { wrapper: WithQueryClient })
 
     for (const stubEvent of stubEvents) {
       act(() => {
