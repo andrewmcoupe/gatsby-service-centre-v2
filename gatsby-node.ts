@@ -12,4 +12,13 @@ export const onCreatePage: GatsbyNode['onCreatePage'] = async ({ page, actions }
       context: null,
     })
   }
+
+  if (page.path.match(/^\/edit-customer/)) {
+    createPage({
+      path: '/edit-customer/:id',
+      matchPath: '/edit-customer/:id',
+      component: path.resolve('./src/pages/edit-customer.tsx'),
+      context: null,
+    })
+  }
 }

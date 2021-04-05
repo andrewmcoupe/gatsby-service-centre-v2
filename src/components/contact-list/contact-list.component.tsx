@@ -8,10 +8,10 @@ type ContactListProps = {
   contacts: Contacts
 }
 
-const renderContact = (contact: PhoneContact | string) => {
+const renderContact = (contact: PhoneContact | string, index: number) => {
   if (!isPhone(contact)) {
     return (
-      <Text fontSize="sm">
+      <Text fontSize="sm" key={index}>
         <span>{contact}</span>
       </Text>
     )
@@ -20,7 +20,7 @@ const renderContact = (contact: PhoneContact | string) => {
   if (!contact.name || !contact.number) return null
 
   return (
-    <Text fontSize="sm">
+    <Text fontSize="sm" key={index}>
       <span>{contact.name}</span> - <span>{contact.number}</span>
     </Text>
   )
@@ -36,7 +36,7 @@ export const ContactList: React.FC<ContactListProps> = ({ contacts }) => {
       <Text fontSize={'lg'} fontWeight={'semibold'}>
         Contact info
       </Text>
-      {contacts.map((contact) => renderContact(contact))}
+      {contacts.map((contact, index) => renderContact(contact, index))}
     </Stack>
   )
 }

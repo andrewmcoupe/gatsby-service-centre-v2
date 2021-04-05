@@ -1,9 +1,10 @@
 import React from 'react'
 import axios from 'axios'
 import { useMutation } from 'react-query'
+import { HistoryItem } from '@http/fetch-customer'
 
 export type NewCustomerState = {
-  [key: string]: string
+  [key: string]: string | HistoryItem[]
   name: string
   address: string
   email: string
@@ -37,7 +38,7 @@ export enum ActionTypes {
   change = 'change',
 }
 
-type Action = {
+export type Action = {
   type: ActionTypes
   payload: React.ChangeEvent<HTMLInputElement>
 }

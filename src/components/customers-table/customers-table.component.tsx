@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link, navigate } from 'gatsby'
 import {
   IconButton,
   Table,
@@ -89,7 +89,13 @@ export const CustomersTable: React.FC<CustomersTableProps> = ({ data }) => {
           <Tr key={customer._id}>
             <Td>
               <HStack>
-                <IconButton colorScheme="teal" aria-label="Edit customer" size="lg" icon={<EditIcon />} />
+                <IconButton
+                  onClick={() => navigate(`/edit-customer/${customer._id}`)}
+                  colorScheme="teal"
+                  aria-label="Edit customer"
+                  size="lg"
+                  icon={<EditIcon />}
+                />
 
                 <IconButton
                   onClick={() => handleOpenModal(customer._id)}

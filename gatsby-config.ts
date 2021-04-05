@@ -16,7 +16,7 @@ module.exports = {
     },
     {
       resolve: `gatsby-plugin-create-client-paths`,
-      options: { prefixes: [`/customer/*`] },
+      options: { prefixes: [`/customer/*`, '/edit-customer/*'] },
     },
   ],
 }

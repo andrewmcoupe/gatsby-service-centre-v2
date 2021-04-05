@@ -52,8 +52,8 @@ export const HistoryTable: React.FC<{ historyItems: HistoryItem[] }> = ({ histor
       <Table variant="striped" size={'sm'} data-testid={'history-table'}>
         <Thead>
           <Tr>
-            {tableHeads.map((headerTitle) => (
-              <Th position={'sticky'} background={'white'} top={0} zIndex={1}>
+            {tableHeads.map((headerTitle, index) => (
+              <Th position={'sticky'} background={'white'} top={0} zIndex={1} key={index}>
                 {headerTitle}
               </Th>
             ))}
