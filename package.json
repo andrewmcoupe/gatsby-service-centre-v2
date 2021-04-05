@@ -14,7 +14,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "prettier:fix": "prettier \"./**/*\" --check --write",
-    "test": "jest",
+    "test": "jest --silent",
     "test:ci": "jest --ci",
     "lint:ts": "eslint --fix",
     "prepare": "husky install"

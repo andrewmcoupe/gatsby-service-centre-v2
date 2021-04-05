@@ -127,7 +127,6 @@ export const useEditCustomer = (id: string) => {
       // Map the response values to a customer state structure
       const newState = getInitialStateFromResponse(customer)
 
-      console.log({ newState })
       dispatch({ type: ActionTypes.update, payload: newState })
     }
   }, [queryStatus, customer])
