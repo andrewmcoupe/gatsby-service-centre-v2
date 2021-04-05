@@ -1,13 +1,12 @@
 import React from 'react'
 import { Heading, FormControl, FormLabel, Input, SimpleGrid, Box, Divider, HStack, Button } from '@chakra-ui/react'
-import Layout from '@components/layout/layout.component'
 import { useAddCustomer } from '@hooks/use-add-customer/use-add-customer.hook'
 
 const AddCustomerPage = () => {
   const { handleChange, onSubmit, status } = useAddCustomer()
 
   return (
-    <Layout>
+    <>
       <Heading>Add a new customer</Heading>
       <SimpleGrid
         columns={2}
@@ -126,7 +125,7 @@ const AddCustomerPage = () => {
           Save customer
         </Button>{' '}
       </HStack>
-    </Layout>
+    </>
   )
 }
 

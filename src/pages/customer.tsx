@@ -1,6 +1,5 @@
 import React from 'react'
 import { Heading, Spinner, Text, HStack } from '@chakra-ui/react'
-import Layout from '@components/layout/layout.component'
 import { useQuery } from 'react-query'
 import { fetchCustomer } from '@http/fetch-customer'
 import { ContactList } from '@components/contact-list/contact-list.component'
@@ -10,7 +9,7 @@ const CustomerPage: React.FC<{ id: string }> = ({ id }) => {
   const { data: customer, status } = useQuery(['single-customer', id], () => fetchCustomer(id))
 
   return (
-    <Layout>
+    <>
       {status === 'loading' && (
         <Spinner
           justifySelf={'center'}
@@ -37,7 +36,7 @@ const CustomerPage: React.FC<{ id: string }> = ({ id }) => {
           <HistoryTable historyItems={customer.history} />
         </>
       )}
-    </Layout>
+    </>
   )
 }
 

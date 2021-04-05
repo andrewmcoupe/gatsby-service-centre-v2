@@ -1,6 +1,5 @@
 import React from 'react'
 import { Heading, Spinner } from '@chakra-ui/react'
-import Layout from '@components/layout/layout.component'
 import { useQuery } from 'react-query'
 import { fetchCustomers } from '@http/fetch-customers'
 import { CustomersTable } from '@components/customers-table/customers-table.component'
@@ -9,8 +8,8 @@ const CustomersPage = () => {
   const { data, status } = useQuery('customers', fetchCustomers)
 
   return (
-    <Layout>
-      <Heading>Our customers</Heading>
+    <>
+      <Heading size={'lg'}>Our customers</Heading>
       {status === 'loading' && (
         <Spinner
           justifySelf={'center'}
@@ -27,7 +26,7 @@ const CustomersPage = () => {
           <CustomersTable data={data} />
         </>
       )}
-    </Layout>
+    </>
   )
 }
 

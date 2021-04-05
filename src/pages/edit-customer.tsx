@@ -12,7 +12,6 @@ import {
   Spinner,
   useToast,
 } from '@chakra-ui/react'
-import Layout from '@components/layout/layout.component'
 import { useEditCustomer } from '@hooks/use-edit-customer'
 
 const EditCustomerPage: React.FC<{ id: string }> = ({ id }) => {
@@ -42,7 +41,7 @@ const EditCustomerPage: React.FC<{ id: string }> = ({ id }) => {
   }
 
   return (
-    <Layout>
+    <>
       <Heading>Edit customer</Heading>
 
       {queryStatus === 'loading' && (
@@ -201,7 +200,7 @@ const EditCustomerPage: React.FC<{ id: string }> = ({ id }) => {
           </HStack>
         </>
       )}
-    </Layout>
+    </>
   )
 }
 
