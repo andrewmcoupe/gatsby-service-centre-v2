@@ -1,4 +1,5 @@
 import React from 'react'
+import { navigate } from 'gatsby'
 import {
   Heading,
   FormControl,
@@ -20,25 +21,39 @@ const EditCustomerPage: React.FC<{ id: string }> = ({ id }) => {
   )
   const toast = useToast()
 
-  if (mutationError) {
-    toast({
-      title: 'Customer update failed',
-      description: `${mutationError}`,
-      status: 'error',
-      duration: 5000,
-      isClosable: true,
-    })
-  }
+  React.useEffect(() => {
+    if (mutationError) {
+      toast({
+        title: 'Customer update failed',
+        description: `${mutationError}`,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      })
+    }
 
-  if (queryError) {
-    toast({
-      title: 'Failed to retrieve customer details',
-      description: `${queryError}`,
-      status: 'error',
-      duration: 5000,
-      isClosable: true,
-    })
-  }
+    if (queryError) {
+      toast({
+        title: 'Failed to retrieve customer details',
+        description: `${queryError}`,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      })
+    }
+
+    if (mutationStatus === 'success') {
+      toast({
+        title: 'Success!',
+        description: 'Customer details updated',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+      })
+
+      navigate('/customers')
+    }
+  }, [queryError, mutationError, mutationStatus])
 
   return (
     <>

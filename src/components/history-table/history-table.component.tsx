@@ -1,5 +1,5 @@
 import React from 'react'
-import { IconButton, Table, Tbody, Td, Th, Thead, Tr, HStack, Text, Link, Badge, Heading } from '@chakra-ui/react'
+import { IconButton, Table, Tbody, Td, Th, Thead, Tr, HStack, Text, Link, Badge } from '@chakra-ui/react'
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
 import { HistoryItem } from '@http/fetch-customer'
 
@@ -46,9 +46,6 @@ export const tableHeads = [
 export const HistoryTable: React.FC<{ historyItems: HistoryItem[] }> = ({ historyItems }) => {
   return historyItems.length > 0 ? (
     <>
-      <Heading size={'md'} marginTop={10} marginBottom={4}>
-        History of work
-      </Heading>
       <Table variant="striped" size={'sm'} data-testid={'history-table'}>
         <Thead>
           <Tr>

@@ -1,13 +1,40 @@
 import React from 'react'
-import { Heading, FormControl, FormLabel, Input, SimpleGrid, Box, Divider, HStack, Button } from '@chakra-ui/react'
+import { navigate } from 'gatsby'
+import {
+  Heading,
+  FormControl,
+  FormLabel,
+  Input,
+  SimpleGrid,
+  Box,
+  Divider,
+  HStack,
+  Button,
+  useToast,
+} from '@chakra-ui/react'
 import { useAddCustomer } from '@hooks/use-add-customer/use-add-customer.hook'
 
 const AddCustomerPage = () => {
   const { handleChange, onSubmit, status } = useAddCustomer()
+  const toast = useToast()
+
+  React.useEffect(() => {
+    if (status === 'success') {
+      toast({
+        title: 'Success!',
+        description: 'Customer created',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+      })
+
+      navigate('/customers')
+    }
+  }, [status])
 
   return (
     <>
-      <Heading>Add a new customer</Heading>
+      <Heading size={'lg'}>Add a new customer</Heading>
       <SimpleGrid
         columns={2}
         spacing={8}

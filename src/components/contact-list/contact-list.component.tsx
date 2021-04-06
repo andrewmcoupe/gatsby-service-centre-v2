@@ -32,7 +32,7 @@ const isPhone = (contact: PhoneContact | string): contact is PhoneContact => {
 
 export const ContactList: React.FC<ContactListProps> = ({ contacts }) => {
   return (
-    <Stack spacing={3} borderColor={'lightgrey'} borderWidth={2} borderRadius={6} padding={4}>
+    <Stack spacing={3} borderColor={'lightgrey'} borderWidth={2} borderRadius={6} padding={4} minWidth={300}>
       <Text fontSize={'lg'} fontWeight={'semibold'}>
         Contact info
       </Text>

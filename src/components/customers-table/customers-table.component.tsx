@@ -18,6 +18,7 @@ import {
   ModalCloseButton,
   Button,
   useDisclosure,
+  useToast,
 } from '@chakra-ui/react'
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons'
 import { useDeleteCustomer } from '@hooks/use-delete-customer'
@@ -34,6 +35,7 @@ type CustomersTableProps = {
 export const CustomersTable: React.FC<CustomersTableProps> = ({ data }) => {
   const { deleteCustomerById, status, setSelectedCustomerId, selectedCustomerId } = useDeleteCustomer()
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const toast = useToast()
 
   const handleOpenModal = (id: string) => {
     onOpen()
@@ -52,7 +54,17 @@ export const CustomersTable: React.FC<CustomersTableProps> = ({ data }) => {
     }
   }
 
-  // TODO: if there is an error we want to show a toast with an error message
+  React.useEffect(() => {
+    if (status === 'success') {
+      toast({
+        title: 'Success!',
+        description: 'Customer deleted',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+      })
+    }
+  }, [status])
 
   return data ? (
     <Table variant="striped" data-testid={'customers-table'} size={'sm'}>
