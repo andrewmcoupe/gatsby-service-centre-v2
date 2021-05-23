@@ -17,6 +17,7 @@ export type CustomerModel = {
 }
 
 export type HistoryItem = {
+  [key: string]: string | string[] | null | Date | undefined
   _id: string
   compressor: string
   jobDescription: string

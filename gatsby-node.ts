@@ -21,4 +21,13 @@ export const onCreatePage: GatsbyNode['onCreatePage'] = async ({ page, actions }
       context: null,
     })
   }
+
+  if (page.path.match(/^\/add-history/)) {
+    createPage({
+      path: '/add-history/:id',
+      matchPath: '/add-history/:id',
+      component: path.resolve('./src/pages/add-history.tsx'),
+      context: null,
+    })
+  }
 }

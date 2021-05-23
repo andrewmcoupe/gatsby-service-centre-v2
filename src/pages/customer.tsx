@@ -45,7 +45,7 @@ const CustomerPage: React.FC<{ id: string }> = ({ id }) => {
             <Heading size={'md'} marginTop={10} marginBottom={4}>
               History of work
             </Heading>
-            <Button as={Link} to={`/add-history/${id}`} colorScheme="blue" variant={'outline'}>
+            <Button as={Link} to={`/add-history/${id}?name=${customer.name}`} colorScheme="blue" variant={'outline'}>
               Add item
             </Button>
           </HStack>
