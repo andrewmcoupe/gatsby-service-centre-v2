@@ -1,5 +1,6 @@
 import React from 'react'
 import { IconButton, Table, Tbody, Td, Th, Thead, Tr, HStack, Text, Link, Badge } from '@chakra-ui/react'
+import { differenceInDays, formatDistanceToNow, isPast } from 'date-fns'
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
 import { HistoryItem } from '@http/fetch-customer'
 
@@ -15,6 +16,31 @@ type MediaProperty = keyof Pick<
   HistoryItem,
   'ramMedia' | 'quoteMedia' | 'jobSheetMedia' | 'powraMedia' | 'invoiceMedia'
 >
+
+// TODO: Put in own file and test
+const NextDueBadge = ({ item }: { item: HistoryItem }) => {
+  if (!item.nextDueDate) {
+    return <Badge colorScheme="gray">N/A</Badge>
+  }
+
+  const daysUntilAction = differenceInDays(Date.now(), new Date(item.nextDueDate))
+  const distanceToNow = formatDistanceToNow(new Date(item.nextDueDate))
+
+  if (daysUntilAction < 30 && daysUntilAction > 0) {
+    return <Badge colorScheme="orange">{daysUntilAction} days</Badge>
+  }
+
+  if (isPast(new Date(item.nextDueDate))) {
+    return (
+      <Badge colorScheme="red">
+        Overdue by
+        <br /> {distanceToNow}
+      </Badge>
+    )
+  }
+
+  return <p>{distanceToNow}</p>
+}
 
 const renderMedia = (item: HistoryItem, mediaName: MediaProperty) => {
   if (item.notRequiredInputs.includes(mediaName)) {
@@ -76,7 +102,9 @@ export const HistoryTable: React.FC<{ historyItems: HistoryItem[] }> = ({ histor
               <Td>{renderMedia(item, 'jobSheetMedia')}</Td>
               <Td>{renderMedia(item, 'invoiceMedia')}</Td>
               <Td>{item.invoiceNumber}</Td>
-              <Td>10 days</Td>
+              <Td>
+                <NextDueBadge item={item} />
+              </Td>
             </Tr>
           ))}
         </Tbody>
