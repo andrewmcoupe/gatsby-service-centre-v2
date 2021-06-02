@@ -23,6 +23,8 @@ import {
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons'
 import { useDeleteCustomer } from '@hooks/use-delete-customer'
 import { GetCustomersResponse } from '@http/fetch-customers'
+import NextDueBadge from '@components/next-due-badge/next-due-badge.component'
+import { getNextDueItem } from '@utils/customer-history'
 
 type CustomersTableProps = {
   data:
@@ -125,7 +127,9 @@ export const CustomersTable: React.FC<CustomersTableProps> = ({ data }) => {
             <Td>{customer.email}</Td>
             <Td>{customer.phone1.number}</Td>
             {/*TODO: Calculate this*/}
-            <Td>10 days</Td>
+            <Td>
+              <NextDueBadge item={getNextDueItem(customer.history)} />
+            </Td>
           </Tr>
         ))}
       </Tbody>

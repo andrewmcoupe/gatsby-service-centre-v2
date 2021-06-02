@@ -19,7 +19,8 @@
       "@components/*": ["./components/*"],
       "@hooks/*": ["./hooks/*"],
       "@http/*": ["./http/*"],
-      "@test-helpers/*": ["./test-helpers/*"]
+      "@test-helpers/*": ["./test-helpers/*"],
+      "@utils/*": ["./utils/*"]
     }
   },
   "exclude": ["node_modules", "./node_modules/*", ".cache"]

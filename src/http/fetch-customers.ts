@@ -29,6 +29,7 @@ export type HistoryItem = {
   invoiceNumber: string
   nextDueDate: Date | null
   purchaseOrderNumber: string
+  notRequiredInputs: string[]
 }
 
 export type GetCustomersResponse = {

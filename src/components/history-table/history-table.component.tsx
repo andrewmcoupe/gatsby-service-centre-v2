@@ -18,7 +18,7 @@ const MediaLink: React.FunctionComponent<{ mediaUrl: string }> = ({ mediaUrl }) 
 }
 
 const renderMedia = (item: HistoryItem, mediaName: MediaProperty) => {
-  if (item.notRequiredInputs.includes(mediaName)) {
+  if (item.notRequiredInputs?.includes(mediaName)) {
     return <Badge colorScheme="gray">N/A</Badge>
   }
 

@@ -30,6 +30,7 @@ const stubCustomersResponse: GetCustomersResponse = {
           quoteMedia: faker.random.number().toString(),
           ramMedia: faker.random.number().toString(),
           supplier: faker.company.companyName(),
+          notRequiredInputs: [],
         },
       ],
       phone1: {
