@@ -1,7 +1,8 @@
 import { renderHook, act } from '@testing-library/react-hooks'
 import axios from 'axios'
-import { NewCustomerRequest, NewCustomerState, useAddCustomer } from './use-add-customer.hook'
+import { NewCustomerState, useAddCustomer } from './use-add-customer.hook'
 import { WithQueryClient } from '@test-helpers/render-with-query-client'
+import { NewCustomerRequest } from '@http/create-customer'
 
 jest.mock('axios')
 

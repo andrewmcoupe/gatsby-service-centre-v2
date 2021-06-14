@@ -1,7 +1,7 @@
 import React from 'react'
-import axios from 'axios'
 import { useMutation } from 'react-query'
 import { HistoryItem } from '@http/fetch-customer'
+import { createCustomer, NewCustomerRequest } from '@http/create-customer'
 
 export type NewCustomerState = {
   [key: string]: string | HistoryItem[]
@@ -14,24 +14,6 @@ export type NewCustomerState = {
   phoneNumber2: string
   phoneName3: string
   phoneNumber3: string
-}
-
-export type NewCustomerRequest = {
-  name: string
-  address: string
-  email: string
-  phone1: {
-    name: string
-    number: string
-  }
-  phone2: {
-    name: string
-    number: string
-  }
-  phone3: {
-    name: string
-    number: string
-  }
 }
 
 export enum ActionTypes {
@@ -71,9 +53,7 @@ const newCustomerReducer = (state: NewCustomerState, action: Action) => {
 
 export const useAddCustomer = () => {
   const [state, dispatch] = React.useReducer(newCustomerReducer, initialState)
-  const { status, mutate } = useMutation((formData: NewCustomerRequest) =>
-    axios.post(`${process.env.CUSTOMERS_SERVICE_API_ENDPOINT}/customers`, formData),
-  )
+  const { status, mutate } = useMutation((formData: NewCustomerRequest) => createCustomer(formData))
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     dispatch({ type: ActionTypes.change, payload: event })
   const onSubmit = async () => {

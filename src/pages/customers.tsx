@@ -1,5 +1,7 @@
 import React from 'react'
 import { Heading, Spinner } from '@chakra-ui/react'
+import { withAuthenticator } from '@aws-amplify/ui-react'
+
 import { useQuery } from 'react-query'
 import { fetchCustomers } from '@http/fetch-customers'
 import { CustomersTable } from '@components/customers-table/customers-table.component'
@@ -20,7 +22,7 @@ const CustomersPage = () => {
           size="xl"
         />
       )}
-      {status === 'error' && <p>There was an error retrieving our customers</p>}
+      {/* {status === 'error' && <p>There was an error retrieving our customers</p>} */}
       {status === 'success' && (
         <>
           <CustomersTable data={data} />
@@ -30,4 +32,4 @@ const CustomersPage = () => {
   )
 }
 
-export default CustomersPage
+export default withAuthenticator(CustomersPage)

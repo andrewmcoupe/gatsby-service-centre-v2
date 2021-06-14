@@ -1,6 +1,7 @@
 import faker from 'faker'
 import { buildRequestBody } from './utils'
-import { NewCustomerRequest, NewCustomerState } from '@hooks/use-add-customer/use-add-customer.hook'
+import { NewCustomerState } from '@hooks/use-add-customer/use-add-customer.hook'
+import { NewCustomerRequest } from './create-customer'
 
 const stubFormData: NewCustomerState = {
   name: faker.company.companyName(),

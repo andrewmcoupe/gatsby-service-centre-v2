@@ -1,8 +1,8 @@
 import React from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { CustomerModel, fetchCustomer, HistoryItem } from '@http/fetch-customer'
-import axios from 'axios'
 import { buildRequestBody } from '@http/utils'
+import { editCustomer } from '@http/edit-customer'
 
 export type UpdateCustomerState = {
   [key: string]: string | HistoryItem[]
@@ -73,7 +73,7 @@ const editCustomerReducer = (state: UpdateCustomerState, action: Action) => {
 
 const getInitialStateFromResponse = (customer: CustomerModel | undefined): UpdateCustomerState => {
   if (!customer) throw new Error('No customer provided')
-  console.log({ getInitialStateFromResponse: customer })
+
   const { name, email, address, phone1, phone2, phone3, history } = customer
 
   return {
@@ -107,9 +107,11 @@ export const useEditCustomer = (id: string) => {
   const { data: customer, status: queryStatus, error: queryError } = useQuery(['single-customer', id], () =>
     fetchCustomer(id),
   )
-  const { status: mutationStatus, mutate, error: mutationError } = useMutation((formData: UpdateCustomerRequest) =>
-    axios.put(`${process.env.CUSTOMERS_SERVICE_API_ENDPOINT}/customers/${id}`, formData),
-  )
+  const {
+    status: mutationStatus,
+    mutate,
+    error: mutationError,
+  } = useMutation((args: { formData: UpdateCustomerRequest; id: string }) => editCustomer(args))
   const [state, dispatch] = React.useReducer(editCustomerReducer, initialState)
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
     dispatch({ type: ActionTypes.change, payload: event })
@@ -117,8 +119,11 @@ export const useEditCustomer = (id: string) => {
     const requestBody = buildRequestBody(state)
 
     mutate({
-      ...requestBody,
-      history: [...state.history],
+      formData: {
+        ...requestBody,
+        history: [...state.history],
+      },
+      id,
     })
   }
 

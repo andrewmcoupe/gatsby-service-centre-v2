@@ -2,6 +2,7 @@ import React from 'react'
 import { useMutation } from 'react-query'
 import axios from 'axios'
 import { HistoryItem } from '@http/fetch-customer'
+import { createHistoryItem } from '@http/create-history-item'
 
 export enum ActionTypes {
   change = 'change',
@@ -62,8 +63,8 @@ const postMediaAndRetrieveUrl = async (file: File, customerName: string): Promis
 
 export const useAddHistoryItem = (id: string, name: string, initialStateOverride?: NewHistoryItem) => {
   const [state, dispatch] = React.useReducer(newHistoryItemReducer, initialStateOverride ?? initialState)
-  const { status, mutate } = useMutation((formData: NewHistoryItem) =>
-    axios.post(`${process.env.CUSTOMERS_SERVICE_API_ENDPOINT}/customers/${id}/history`, formData),
+  const { status, mutate } = useMutation((args: { formData: NewHistoryItem; id: string }) =>
+    createHistoryItem(args.formData, args.id),
   )
 
   const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,7 +78,7 @@ export const useAddHistoryItem = (id: string, name: string, initialStateOverride
   }
 
   const onSubmit = async () => {
-    mutate(state)
+    mutate({ formData: state, id })
   }
 
   return {
