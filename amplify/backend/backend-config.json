@@ -1,6 +1,6 @@
 {
   "auth": {
-    "gatsbyservicecentrev065effb7": {
+    "gatsbyservicecentrevbf386470": {
       "service": "Cognito",
       "serviceType": "imported",
       "providerPlugin": "awscloudformation",
