@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link, PageProps } from 'gatsby'
 import { Heading, Spinner, Text, HStack, Button, Box } from '@chakra-ui/react'
 import { useQuery } from 'react-query'
 import { fetchCustomer } from '@http/fetch-customer'
@@ -16,7 +16,7 @@ export const FormattedAddress = ({ address }: { address: string }) => (
   </>
 )
 
-const CustomerPage: React.FC<{ id: string }> = ({ id }) => {
+const CustomerPage = ({ id }: { id: string } & PageProps) => {
   const { data: customer, status } = useQuery(['single-customer', id], () => fetchCustomer(id))
 
   return (
